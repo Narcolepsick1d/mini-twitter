@@ -1,0 +1,36 @@
+# docker compose for local development only
+version: '3.9'
+
+services:
+  postgres:
+    container_name: mini-twitter-postgres
+    image: postgres:latest
+    user: postgres
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - PGDATA=/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mini-twitter:
+    container_name: twitter
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+    env_file: ../../.envrc
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8081:${SERVER_PORT}"
+
+volumes:
+  pg-data:
