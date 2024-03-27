@@ -9,7 +9,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	// swaggo/swag requires import of docs for side effect.
-	_ "Narcolepsick1d/mini-twitter/docs"
+	//_ "Narcolepsick1d/mini-twitter/docs"
 )
 
 type HandlerConfig struct {
@@ -27,5 +27,8 @@ func NewHandler(cfg HandlerConfig) http.Handler {
 	router.POST("/follow", cfg.follow)
 	router.POST("/unfollow", cfg.unfollow)
 	router.POST("/tweet", cfg.tweet)
+	router.POST("/retweet", cfg.retweet)
+	router.POST("/like", cfg.like)
+	router.POST("/unlike", cfg.unlike)
 	return router
 }

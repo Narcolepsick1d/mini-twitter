@@ -3,18 +3,18 @@ begin;
 create extension if not exists "uuid-ossp";
 
 create table if not exists users(
-                                    id UUID DEFAULT uuid_generate_v4() primary key ,
-                                    name varchar(20) not null ,
-                                    email varchar unique not null ,
-                                    password varchar not null
-);
+                                    id uuid DEFAULT uuid_generate_v4() primary key ,
+    name varchar(20) not null ,
+    email varchar unique not null ,
+    password varchar not null
+    );
 CREATE INDEX if not exists id_users ON users (id);
 CREATE TABLE IF NOT EXISTS refresh_tokens(
                                              id uuid DEFAULT uuid_generate_v4() primary key ,
-                                             user_id uuid references users(id) on delete cascade not null ,
-                                             token varchar(255) not null unique ,
-                                             expires_at timestamp not null
-);
+    user_id uuid references users(id) on delete cascade not null ,
+    token varchar(255) not null unique ,
+    expires_at timestamp not null
+    );
 CREATE INDEX if not exists id_token ON refresh_tokens (id);
 CREATE table followers(
                           lead_id uuid references users (id) on delete cascade ,
@@ -29,13 +29,13 @@ CREATE TABLE tweets (
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE likes (
-                       user_id INTEGER REFERENCES users(id),
-                       tweet_id INTEGER REFERENCES tweets(id),
+                       user_id uuid REFERENCES users(id),
+                       tweet_id uuid REFERENCES tweets(id),
                        PRIMARY KEY (user_id, tweet_id)
 );
 
 CREATE TABLE retweets (
-                          user_id INTEGER REFERENCES users(id),
+                          user_id uuid REFERENCES users(id),
                           tweet_id uuid REFERENCES tweets(id),
                           PRIMARY KEY (user_id, tweet_id)
 );
