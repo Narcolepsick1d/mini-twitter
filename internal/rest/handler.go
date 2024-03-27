@@ -9,7 +9,7 @@ import (
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	// swaggo/swag requires import of docs for side effect.
-	//_ "Narcolepsick1d/mini-twitter/docs"
+	_ "Narcolepsick1d/mini-twitter/docs"
 )
 
 type HandlerConfig struct {

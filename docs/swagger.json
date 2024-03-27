@@ -1,0 +1,77 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a Mini twitter service API.",
+        "title": "Mini-twitter Swagger API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/signup": {
+            "post": {
+                "description": "Register a new user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User sign up",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "email",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "name",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "password",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Wrong data",
+                        "schema": {
+                            "$ref": "#/definitions/models.BaseResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.BaseResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "description": "Error Сообщение об ошибке",
+                    "type": "string"
+                },
+                "errorCode": {
+                    "description": "ErrorCode Код ошибки",
+                    "type": "integer"
+                },
+                "success": {
+                    "description": "Success Успешно ли выполнен запрос",
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

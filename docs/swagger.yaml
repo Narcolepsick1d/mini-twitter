@@ -1,0 +1,50 @@
+basePath: /api/v1
+definitions:
+  models.BaseResponse:
+    properties:
+      error:
+        description: Error Сообщение об ошибке
+        type: string
+      errorCode:
+        description: ErrorCode Код ошибки
+        type: integer
+      success:
+        description: Success Успешно ли выполнен запрос
+        type: boolean
+    type: object
+info:
+  contact: {}
+  description: This is a Mini twitter service API.
+  title: Mini-twitter Swagger API
+  version: "1.0"
+paths:
+  /signup:
+    post:
+      consumes:
+      - application/json
+      description: Register a new user
+      parameters:
+      - in: query
+        name: email
+        type: string
+      - in: query
+        name: name
+        type: string
+      - in: query
+        name: password
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Wrong data
+          schema:
+            $ref: '#/definitions/models.BaseResponse'
+      summary: User sign up
+      tags:
+      - Auth
+swagger: "2.0"
