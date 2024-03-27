@@ -1,0 +1,39 @@
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+coverage.out
+*.cover
+.hypothesis/
+
+# Environments
+env.local
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.env
+.envrc
+
+# IDEs
+.vscode/
+/.idea/
+
+docker-compose.override.yml
+
+
+# app binaries
+main
+
+internal/scope/mocks
+__debug*
+
+internal/client/camunda/process/mocks
+.DS_Store

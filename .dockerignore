@@ -1,0 +1,13 @@
+*
+!bin
+!cmd
+!migrations
+!internal
+!pkg
+!*.go
+!go.mod
+!go.sum
+!.golangci.yml
+!gqlgen.yml
+!.mockery.yaml
+!genqlient.yaml
